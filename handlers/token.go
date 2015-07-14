@@ -81,5 +81,6 @@ func TokenHandler(w http.ResponseWriter, r *http.Request) {
 
 	copyHeader(w.Header(), resp.Header)
 	w.WriteHeader(resp.StatusCode)
+	w.(http.Flusher).Flush()
 	io.Copy(w, resp.Body)
 }
