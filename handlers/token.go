@@ -26,9 +26,9 @@ func proxyRequest(r *http.Request) (*http.Response, error) {
 
 	for i := 0; i <= 10; i++ {
 		u := url.URL{
-			Scheme: "http",
-			Host: currentLeader.String(),
-			Path: path.Join("v2", "keys", "_etcd", "registry", r.URL.Path),
+			Scheme:   "http",
+			Host:     currentLeader.String(),
+			Path:     path.Join("v2", "keys", "_etcd", "registry", r.URL.Path),
 			RawQuery: r.URL.RawQuery,
 		}
 
