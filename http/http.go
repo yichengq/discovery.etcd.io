@@ -4,8 +4,6 @@ import (
 	"net/http"
 	"os"
 
-	gorillaHandlers "github.com/gorilla/handlers"
-
 	"github.com/coreos/discovery.etcd.io/handlers"
 	"github.com/gorilla/mux"
 )
@@ -28,7 +26,7 @@ func init() {
 	r.HandleFunc("/{token:[a-f0-9]{32}}/_config/size", handlers.TokenHandler).
 		Methods("GET")
 
-	logH := gorillaHandlers.LoggingHandler(os.Stdout, r)
+	logH := loggingHandler{writer: os.Stdout, handler: r}
 
 	http.Handle("/", logH)
 }
