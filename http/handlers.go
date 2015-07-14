@@ -61,6 +61,10 @@ func (l *responseLogger) Size() int {
 	return l.size
 }
 
+func (l *responseLogger) Flush() {
+	l.w.(http.Flusher).Flush()
+}
+
 const lowerhex = "0123456789abcdef"
 
 func appendQuoted(buf []byte, s string) []byte {
